@@ -12,7 +12,7 @@ public class PointCloudRenderer : MonoBehaviour
 	private uint resW = 1000;
 	private uint resH = 1000;
 
-	private float particleSize = 0.1f;
+	private float particleSize = 0.02f;
 	private bool toUpdate = false;
 	private uint particleCount = 0;
 
@@ -47,7 +47,7 @@ public class PointCloudRenderer : MonoBehaviour
 				Color pix = tex.GetPixel(i, j);
 				float grayScale = 0.299f * pix.r + 0.587f * pix.g + 0.114f * pix.b;
 				texColor.SetPixel(i, j, new Color(pix.r, pix.g, pix.b, 1));
-				texPosScale.SetPixel(i, j, new Color(i / 10f, j / 10f, grayScale, grayScale / 5f));
+				texPosScale.SetPixel(i, j, new Color((i - texWidth / 2) / 100f, grayScale, (j - texHeight / 2) / 100f, particleSize));
 			}
 		}
 		texColor.Apply();
