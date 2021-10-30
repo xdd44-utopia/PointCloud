@@ -153,7 +153,7 @@ MonoBehaviour:
   m_DefaultVolumeProfile: {fileID: 11400000, guid: dad837d90c0ee41ed8dbdbee800dbb36, type: 2}
   m_LensAttenuation: 0
   m_UseRenderGraph: 1
-  m_DefaultLookDevProfile: {fileID: 11400000, guid: fb4b2a0acdc4748fb85e5ddca750c82e, type: 2}
+  m_DefaultLookDevProfile: {fileID: 11400000, guid: 254c4fe87beb7be4fa72e1681edbed02, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
       data1: 72198262773251917
@@ -272,9 +272,9 @@ MonoBehaviour:
       maxEnvLightsOnScreen: 64
       maxDecalsOnScreen: 512
       maxPlanarReflectionOnScreen: 16
-      maxLightsPerClusterCell: 8
+      maxLightsPerClusterCell: 24
     hdShadowInitParams:
-      maxShadowRequests: 1000
+      maxShadowRequests: 1024
       directionalShadowsDepthBits: 32
       shadowFilteringQuality: 2
       punctualLightShadowAtlas:
@@ -439,9 +439,7 @@ MonoBehaviour:
   availableMaterialQualityLevels: -1
   m_DefaultMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
-  diffusionProfileSettingsList:
-  - {fileID: 11400000, guid: 807aa3d7e7d934e9aaaee53589f30e56, type: 2}
-  - {fileID: 11400000, guid: c1b5676e0ee0a4f4f91df9f09b25d0e6, type: 2}
+  diffusionProfileSettingsList: []
   beforeTransparentCustomPostProcesses: []
   beforeTAACustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
