@@ -21,12 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Default
-  m_Shader: {fileID: -6465566751694194690, guid: 4bc0175e4c2b6394cb1cfb048052965b, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
+  m_Shader: {fileID: -6465566751694194690, guid: 364b6fa456ec840e08892cd26ae50eb5, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2225
+  m_CustomRenderQueue: 2000
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
@@ -38,6 +38,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_41f479dfcb774efe9ce82de376b3f02d:
+        m_Texture: {fileID: 2800000, guid: 4bd82554c46f75e4f8097b9dac330e5c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_6b49e59d23eb4f38af628176746169ee:
+        m_Texture: {fileID: 2800000, guid: 60908933796217744955ce6086bdab84, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_6fdc2987b1a24437acfa0e90704a2379:
         m_Texture: {fileID: 2800000, guid: 4bd82554c46f75e4f8097b9dac330e5c, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -150,6 +158,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_89ddf311b9164374807daf0410f75065_Out_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_cda036df05984979be321e0b374be7ed_Out_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_d73a17c8632746c68f5a860d5d515502_Out_0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ThicknessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -173,9 +193,13 @@ Material:
     m_Floats:
     - Vector1_1e5613aee83f4833a50943b353dccf2e: 1
     - Vector1_84ed0275769641368d11e80b8e665cc0: 16
+    - Vector1_9fa6d82dcca44cea8d1393bb37bb355f: 9
+    - Vector1_b084fa447e4a45bb8860ee4fb59e719a: 1
+    - Vector1_b95d8a89d1854e08beeb4e344baf8406: 16
     - Vector1_ba326de8aaa243bd83a231e6c19f3417: 9
     - Vector1_e11b5c884ae441b881e7729065f49ecc: 0.1
     - Vector1_e720bf70d6954f98818324750da29ad0: 6.85
+    - Vector1_e7e6b59e27944b1bb7ba32eac68b60ba: 1
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -266,10 +290,10 @@ Material:
     - _SpecularOcclusionMode: 1
     - _SrcBlend: 1
     - _StencilRef: 0
-    - _StencilRefDepth: 8
+    - _StencilRefDepth: 0
     - _StencilRefDistortionVec: 4
-    - _StencilRefGBuffer: 10
-    - _StencilRefMV: 40
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskDistortionVec: 4
