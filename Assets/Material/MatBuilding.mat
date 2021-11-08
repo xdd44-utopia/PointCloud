@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Default
+  m_Name: MatBuilding
   m_Shader: {fileID: -6465566751694194690, guid: 364b6fa456ec840e08892cd26ae50eb5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -39,11 +39,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_41f479dfcb774efe9ce82de376b3f02d:
-        m_Texture: {fileID: 2800000, guid: 4bd82554c46f75e4f8097b9dac330e5c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4041b187722fc4f9b859e350d0b4485b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_6b49e59d23eb4f38af628176746169ee:
-        m_Texture: {fileID: 2800000, guid: 60908933796217744955ce6086bdab84, type: 3}
+        m_Texture: {fileID: 2800000, guid: a76a39a21ad8943b9ab9dce06cf847b7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_6fdc2987b1a24437acfa0e90704a2379:
@@ -193,7 +193,7 @@ Material:
     m_Floats:
     - Vector1_1e5613aee83f4833a50943b353dccf2e: 1
     - Vector1_84ed0275769641368d11e80b8e665cc0: 16
-    - Vector1_9fa6d82dcca44cea8d1393bb37bb355f: 9
+    - Vector1_9fa6d82dcca44cea8d1393bb37bb355f: 16
     - Vector1_b084fa447e4a45bb8860ee4fb59e719a: 1
     - Vector1_b95d8a89d1854e08beeb4e344baf8406: 16
     - Vector1_ba326de8aaa243bd83a231e6c19f3417: 9
@@ -324,7 +324,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Vector3_3ccdb16aef4a4656a55b99bdfb33b70c: {r: -7.87, g: -3.68, b: 0, a: 0}
+    - Vector3_3ccdb16aef4a4656a55b99bdfb33b70c: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 1}
