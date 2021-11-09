@@ -19,6 +19,12 @@ public class FlyCamera : MonoBehaviour {
 	float camSens = 0.5f; //How sensitive it with mouse
 	private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
 	private float totalRun= 1.0f;
+
+	void Start()
+	{
+		Cursor.visible = false;
+	}
+
 	 
 	void Update () {
 		lastMouse = Input.mousePosition - lastMouse ;
@@ -83,6 +89,9 @@ public class FlyCamera : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.E)){
 			p_Velocity += new Vector3(0, 1, 0);
+		}
+		if (Input.GetKey (KeyCode.Escape)){
+			Cursor.visible = true;
 		}
 		return p_Velocity;
 	}
