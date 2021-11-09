@@ -14,7 +14,8 @@ public class BlockController : MonoBehaviour
 	private Vector3 targetPos;
 
 	private float fadePos;
-	private const float fadeSpeed = 1f;
+	private const float activateSpeed = 5f;
+	private const float deactivateSpeed = 0.75f;
 
 	private Vector3 defaultScale = new Vector3(1, 1, 1);
 
@@ -77,14 +78,14 @@ public class BlockController : MonoBehaviour
 	private void activating() {
 		updateTexture();
 		transform.localScale = fadeVector(new Vector3(0, 0, 0), defaultScale, fadePos);
-		fadePos += Time.deltaTime * fadeSpeed;
+		fadePos += Time.deltaTime * activateSpeed;
 		if (fadePos > 1) {
 			state = State.activated;
 		}
 	}
 	private void deactivating() {
 		transform.localScale = fadeVector(defaultScale, new Vector3(0, 0, 0), fadePos);
-		fadePos += Time.deltaTime * fadeSpeed;
+		fadePos += Time.deltaTime * deactivateSpeed;
 		if (fadePos > 1) {
 			state = State.sleep;
 			pool.GetComponent<PrefabPool>().removeBlock((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
