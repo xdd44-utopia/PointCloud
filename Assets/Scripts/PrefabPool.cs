@@ -12,7 +12,6 @@ public class PrefabPool : MonoBehaviour
 	private List<GameObject> list;
 
 	private const int spaceSize = 128;
-	private const int checkRange = 32;
 	private int[,,] space = new int[spaceSize * 2, spaceSize * 2, spaceSize * 2];
 
 
@@ -38,9 +37,15 @@ public class PrefabPool : MonoBehaviour
 	}
 
 	private void updateVoxel() {
+		float checkXLower = transform.position.x - transform.localScale.x / 2;
+		float checkXHigher = transform.position.x + transform.localScale.x / 2;
+		float checkYLower = transform.position.y - transform.localScale.y / 2;
+		float checkYHigher = transform.position.y + transform.localScale.y / 2;
+		float checkZLower = transform.position.z - transform.localScale.z / 2;
+		float checkZHigher = transform.position.z + transform.localScale.z / 2;
 		foreach (GameObject entity in entities) {
-			for (int i=-checkRange;i<=checkRange;i++) {
-				for (int j=-checkRange;j<=checkRange;j++) {
+			for (int i=-(int)checkXLower;i<=checkXHigher;i++) {
+				for (int j=-(int)checkZLower;j<=checkZHigher;j++) {
 					RaycastHit hitDownward;
 					RaycastHit hitUpward;
 					int upper = spaceSize * 10;
@@ -48,7 +53,7 @@ public class PrefabPool : MonoBehaviour
 					int x = (int)(entity.transform.position.x + i);
 					int z = (int)(entity.transform.position.z + j);
 					if (Physics.Raycast(
-						new Vector3(x, spaceSize + checkRange, z),
+						new Vector3(x, checkYHigher, z),
 						new Vector3(0, -1, 0),
 						out hitDownward,
 						Mathf.Infinity,
@@ -57,7 +62,7 @@ public class PrefabPool : MonoBehaviour
 						upper = (int)Mathf.Ceil(hitDownward.point.y);
 					}
 					if (Physics.Raycast(
-						new Vector3(x, - (spaceSize + checkRange), z),
+						new Vector3(x, checkYLower, z),
 						new Vector3(0, 1, 0),
 						out hitUpward,
 						Mathf.Infinity,

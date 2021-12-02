@@ -6,12 +6,10 @@ public class BlockController : MonoBehaviour
 {
 	[HideInInspector]
 	public GameObject pool;
-	[HideInInspector]
 	public int index;
 	public Material matPrefab;
 	private Material mat;
 	private const float lerpSpeed = 5f;
-	private Vector3 targetPos;
 
 	private float fadePos;
 	private const float activateSpeed = 5f;
@@ -19,8 +17,15 @@ public class BlockController : MonoBehaviour
 
 	private Vector3 defaultScale = new Vector3(1, 1, 1);
 
-	private float selfDeactiveTimer = 0f;
-	private const float selfDeactiveLimit = 0.05f;
+	private int selfDeactiveTimer = 0;
+	private const int selfDeactiveLimit = 5;
+
+	private Vector3 basePos = new Vector3(0, 0, 0);
+	private Vector3 targetPos = new Vector3(0, 0, 0);
+
+	private float timer;
+	private float offsetSpeed = 0.1f;
+	private float offsetScale = 0.25f;
 
 	private enum State {
 		activating,
@@ -57,8 +62,9 @@ public class BlockController : MonoBehaviour
 			}
 			case State.activated: {
 				transform.localScale = new Vector3(1, 1, 1);
-				selfDeactiveTimer -= Time.deltaTime;
-				if (selfDeactiveTimer < 0) {
+				selfDeactiveTimer++;
+				offset();
+				if (selfDeactiveTimer >= selfDeactiveLimit) {
 					toggleDeactive();
 				}
 				break;
@@ -68,6 +74,12 @@ public class BlockController : MonoBehaviour
 				break;
 			}
 		}
+
+		timer += Time.deltaTime;
+		transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
+		// if (index == 0) {
+		// 	Debug.Log(transform.position + " " + targetPos);
+		// }
 
 	}
 
@@ -93,21 +105,35 @@ public class BlockController : MonoBehaviour
 	}
 
 	public void toggleActive() {
+		if (index == 0) {
+			Debug.Log(transform.position + " " + targetPos);
+		}
 		state = State.activating;
 		fadePos = 0;
+		basePos = transform.position;
+		targetPos = basePos;
 		confirmActive();
 	}
 	public void toggleDeactive() {
+		if (index == 0) {
+			Debug.Log("deactivate");
+		}
 		state = State.deactivating;
+		targetPos = basePos;
 		fadePos = 0;
 	}
 
 	public void confirmActive() {
-		selfDeactiveTimer = selfDeactiveLimit;
+		selfDeactiveTimer = 0;
 		if (state == State.deactivating) {
 			state = State.activating;
 			fadePos = 1 - fadePos;
 		}
+	}
+
+	private void offset() {
+		float x = Mathf.PerlinNoise(timer * offsetSpeed + transform.position.z * offsetScale, transform.position.y * offsetScale);
+		targetPos = basePos + new Vector3((x - 0.5f) * 2.5f, 0, 0);
 	}
 
 	private Vector3 fadeVector(Vector3 x, Vector3 y, float t) {

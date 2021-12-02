@@ -68,6 +68,8 @@ public class FlyCamera : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}
 
+		transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+
 	}
 	 
 	private Vector3 GetBaseInput() { //returns the basic values, if it's 0 than it's not active.
@@ -92,6 +94,9 @@ public class FlyCamera : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.Escape)){
 			Cursor.visible = true;
+		}
+		if (Input.GetKey (KeyCode.Space)){
+			Cursor.visible = false;
 		}
 		return p_Velocity;
 	}
