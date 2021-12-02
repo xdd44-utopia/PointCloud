@@ -105,9 +105,6 @@ public class BlockController : MonoBehaviour
 	}
 
 	public void toggleActive() {
-		if (index == 0) {
-			Debug.Log(transform.position + " " + targetPos);
-		}
 		state = State.activating;
 		fadePos = 0;
 		basePos = transform.position;
@@ -115,9 +112,6 @@ public class BlockController : MonoBehaviour
 		confirmActive();
 	}
 	public void toggleDeactive() {
-		if (index == 0) {
-			Debug.Log("deactivate");
-		}
 		state = State.deactivating;
 		targetPos = basePos;
 		fadePos = 0;

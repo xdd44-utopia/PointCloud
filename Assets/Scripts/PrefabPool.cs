@@ -43,37 +43,35 @@ public class PrefabPool : MonoBehaviour
 		float checkYHigher = transform.position.y + transform.localScale.y / 2;
 		float checkZLower = transform.position.z - transform.localScale.z / 2;
 		float checkZHigher = transform.position.z + transform.localScale.z / 2;
-		foreach (GameObject entity in entities) {
-			for (int i=-(int)checkXLower;i<=checkXHigher;i++) {
-				for (int j=-(int)checkZLower;j<=checkZHigher;j++) {
-					RaycastHit hitDownward;
-					RaycastHit hitUpward;
-					int upper = spaceSize * 10;
-					int lower = spaceSize * 10;
-					int x = (int)(entity.transform.position.x + i);
-					int z = (int)(entity.transform.position.z + j);
-					if (Physics.Raycast(
-						new Vector3(x, checkYHigher, z),
-						new Vector3(0, -1, 0),
-						out hitDownward,
-						Mathf.Infinity,
-						layer)
-					) {
-						upper = (int)Mathf.Ceil(hitDownward.point.y);
-					}
-					if (Physics.Raycast(
-						new Vector3(x, checkYLower, z),
-						new Vector3(0, 1, 0),
-						out hitUpward,
-						Mathf.Infinity,
-						layer)
-					) {
-						lower = (int)Mathf.Floor(hitUpward.point.y);
-					}
-					if (upper != spaceSize * 10 && lower != spaceSize * 10) {
-						for (int y=lower;y<=upper;y++) {
-							addBlock(x, y, z);
-						}
+		for (int x=(int)checkXLower;x<=checkXHigher;x++) {
+			for (int z=(int)checkZLower;z<=checkZHigher;z++) {
+				RaycastHit hitDownward;
+				RaycastHit hitUpward;
+				int upper = spaceSize * 10;
+				int lower = spaceSize * 10;
+				if (Physics.Raycast(
+					new Vector3(x, spaceSize, z),
+					new Vector3(0, -1, 0),
+					out hitDownward,
+					Mathf.Infinity,
+					layer)
+				) {
+					upper = (int)Mathf.Ceil(hitDownward.point.y);
+				}
+				if (Physics.Raycast(
+					new Vector3(x, -spaceSize, z),
+					new Vector3(0, 1, 0),
+					out hitUpward,
+					Mathf.Infinity,
+					layer)
+				) {
+					lower = (int)Mathf.Floor(hitUpward.point.y);
+				}
+				if (upper != spaceSize * 10 && lower != spaceSize * 10) {
+					upper = upper < (int)checkYHigher ? upper : (int)checkYHigher;
+					lower = lower > (int)checkYLower ? lower : (int)checkYLower;
+					for (int y=lower;y<=upper;y++) {
+						addBlock(x, y, z);
 					}
 				}
 			}
