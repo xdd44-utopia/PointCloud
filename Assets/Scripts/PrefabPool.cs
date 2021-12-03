@@ -77,6 +77,7 @@ public class PrefabPool : MonoBehaviour
 			}
 		}
 	}
+	
 	public void addBlock(int x, int y, int z) {
 		x += spaceSize;
 		y += spaceSize;

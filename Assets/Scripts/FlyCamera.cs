@@ -68,7 +68,7 @@ public class FlyCamera : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}
 
-		transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+		// transform.position = new Vector3(transform.position.x, 5, transform.position.z);
 
 	}
 	 

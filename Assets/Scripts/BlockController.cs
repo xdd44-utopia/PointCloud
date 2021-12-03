@@ -12,10 +12,10 @@ public class BlockController : MonoBehaviour
 	private const float lerpSpeed = 5f;
 
 	private float fadePos;
-	private const float activateSpeed = 5f;
+	private const float activateSpeed = 1f;
 	private const float deactivateSpeed = 0.75f;
 
-	private Vector3 defaultScale = new Vector3(1, 1, 1);
+	private Vector3 defaultScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 	private int selfDeactiveTimer = 0;
 	private const int selfDeactiveLimit = 5;
@@ -61,9 +61,9 @@ public class BlockController : MonoBehaviour
 				break;
 			}
 			case State.activated: {
-				transform.localScale = new Vector3(1, 1, 1);
+				transform.localScale = defaultScale;
 				selfDeactiveTimer++;
-				offset();
+				//offset();
 				if (selfDeactiveTimer >= selfDeactiveLimit) {
 					toggleDeactive();
 				}
@@ -113,7 +113,6 @@ public class BlockController : MonoBehaviour
 	}
 	public void toggleDeactive() {
 		state = State.deactivating;
-		targetPos = basePos;
 		fadePos = 0;
 	}
 
@@ -127,7 +126,7 @@ public class BlockController : MonoBehaviour
 
 	private void offset() {
 		float x = Mathf.PerlinNoise(timer * offsetSpeed + transform.position.z * offsetScale, transform.position.y * offsetScale);
-		targetPos = basePos + new Vector3((x - 0.5f) * 2.5f, 0, 0);
+		targetPos = basePos + new Vector3((x - 0.5f) * 1f, 0, 0);
 	}
 
 	private Vector3 fadeVector(Vector3 x, Vector3 y, float t) {

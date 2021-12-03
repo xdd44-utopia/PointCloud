@@ -195,8 +195,8 @@ MonoBehaviour:
   active: 1
   m_AdvancedMode: 0
   skyType:
-    m_OverrideState: 1
-    m_Value: 4
+    m_OverrideState: 0
+    m_Value: 0
   skyAmbientMode:
     m_OverrideState: 0
     m_Value: 0
@@ -219,6 +219,7 @@ MonoBehaviour:
   - {fileID: -4125079154770244301}
   - {fileID: -5305114667569252784}
   - {fileID: 222200672277803793}
+  - {fileID: 5813598468274538428}
 --- !u!114 &222200672277803793
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -231,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   quality:
     m_OverrideState: 1
@@ -276,10 +277,10 @@ MonoBehaviour:
     m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 128
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 10
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1
@@ -341,3 +342,103 @@ MonoBehaviour:
   filter:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &5813598468274538428
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384c4d03a551c44448145f4093304119, type: 3}
+  m_Name: ScreenSpaceReflection
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  quality:
+    m_OverrideState: 1
+    m_Value: 2
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  usedAlgorithm:
+    m_OverrideState: 1
+    m_Value: 0
+  rayTracing:
+    m_OverrideState: 0
+    m_Value: 0
+  reflectSky:
+    m_OverrideState: 1
+    m_Value: 1
+  depthBufferThickness:
+    m_OverrideState: 1
+    m_Value: 0.001
+    min: 0
+    max: 1
+  screenFadeDistance:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  accumulationFactor:
+    m_OverrideState: 0
+    m_Value: 0.75
+    min: 0
+    max: 1
+  layerMask:
+    m_OverrideState: 0
+    m_Value:
+      serializedVersion: 2
+      m_Bits: 4294967295
+  mode:
+    m_OverrideState: 0
+    m_Value: 2
+  sampleCount:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 1
+    max: 32
+  bounceCount:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 1
+    max: 8
+  m_MinSmoothness:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  m_SmoothnessFadeStart:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  m_RayMaxIterations:
+    m_OverrideState: 1
+    m_Value: 64
+  m_RayLength:
+    m_OverrideState: 0
+    m_Value: 50
+    min: 0.01
+  m_ClampValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0.001
+    max: 10
+  m_UpscaleRadius:
+    m_OverrideState: 0
+    m_Value: 2
+    min: 2
+    max: 6
+  m_FullResolution:
+    m_OverrideState: 0
+    m_Value: 0
+  m_Denoise:
+    m_OverrideState: 0
+    m_Value: 1
+  m_DenoiserRadius:
+    m_OverrideState: 0
+    m_Value: 8
+    min: 1
+    max: 32
