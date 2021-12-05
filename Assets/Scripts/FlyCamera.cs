@@ -12,8 +12,8 @@ public class FlyCamera : MonoBehaviour {
 	shift : Makes camera accelerate
 	space : Moves camera on X and Z axis only.  So camera doesn't gain any height*/
 	 
-	 
-	float mainSpeed = 10.0f; //regular speed
+	public float height;
+	public float mainSpeed; //regular speed
 	float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	float maxShift = 1000.0f; //Maximum speed when holdin gshift
 	float camSens = 0.5f; //How sensitive it with mouse
@@ -68,7 +68,9 @@ public class FlyCamera : MonoBehaviour {
 			Cursor.lockState = CursorLockMode.None;
 		}
 
-		// transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+		if (height > 0) {
+			transform.position = new Vector3(transform.position.x, height, transform.position.z);
+		}
 
 	}
 	 
