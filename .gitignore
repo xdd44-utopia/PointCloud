@@ -10,7 +10,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+<<<<<<< Updated upstream
 /[Mm]odels/
+=======
+/[Rr]esources/
+>>>>>>> Stashed changes
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
