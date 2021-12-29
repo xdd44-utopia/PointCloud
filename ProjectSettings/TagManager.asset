@@ -14,8 +14,12 @@ TagManager:
   - Entity_Building
   - Entity_Cloud
   - Entity_Street
+<<<<<<< HEAD
   - 
   - Scene Image
+=======
+  - Entity_People
+>>>>>>> 26015ade5c72312c331619bdd2c52a3cb98de267
   - 
   - Objects
   - 

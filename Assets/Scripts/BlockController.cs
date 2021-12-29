@@ -12,20 +12,22 @@ public class BlockController : MonoBehaviour
 	private const float lerpSpeed = 5f;
 
 	private float fadePos;
-	private const float activateSpeed = 1f;
+	private const float activateSpeed = 1.25f;
 	private const float deactivateSpeed = 0.75f;
 
-	private Vector3 defaultScale = new Vector3(1.5f, 1.5f, 1.5f);
+	private Vector3 defaultScale = new Vector3(1f, 1f, 1f);
 
 	private int selfDeactiveTimer = 0;
-	private const int selfDeactiveLimit = 5;
+	private const float selfDeactiveLimit = 0.5f;
 
+	private Vector3 originPos;
 	private Vector3 basePos = new Vector3(0, 0, 0);
 	private Vector3 targetPos = new Vector3(0, 0, 0);
 
 	private float timer;
 	private float offsetSpeed = 0.1f;
-	private float offsetScale = 0.25f;
+	private float offsetScale = 0.05f;
+	private bool hasOffset = false;
 
 	private enum State {
 		activating,
@@ -44,7 +46,7 @@ public class BlockController : MonoBehaviour
 
 		state = State.sleep;
 
-		toggleActive();
+		toggleActive(new Vector3(0, 0, 0), -1, false);
 	}
 
 	// Update is called once per frame
@@ -63,7 +65,9 @@ public class BlockController : MonoBehaviour
 			case State.activated: {
 				transform.localScale = defaultScale;
 				selfDeactiveTimer++;
-				//offset();
+				if (hasOffset) {
+					offset();
+				}
 				if (selfDeactiveTimer >= selfDeactiveLimit) {
 					toggleDeactive();
 				}
@@ -77,14 +81,15 @@ public class BlockController : MonoBehaviour
 
 		timer += Time.deltaTime;
 		transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 10);
-		// if (index == 0) {
-		// 	Debug.Log(transform.position + " " + targetPos);
-		// }
-
 	}
 
 	private void updateTexture() {
-		mat.SetVector("Vector3_3ccdb16aef4a4656a55b99bdfb33b70c", new Vector4(transform.position.x, transform.position.y, transform.position.z, 0));
+		if (hasOffset) {
+			mat.SetVector("Vector3_3ccdb16aef4a4656a55b99bdfb33b70c", new Vector4(transform.position.x + originPos.x, transform.position.y + originPos.y, transform.position.z + originPos.z, 0));
+		}
+		else {
+			mat.SetVector("Vector3_3ccdb16aef4a4656a55b99bdfb33b70c", new Vector4(transform.position.x + Random.Range(0, 5), transform.position.y + Random.Range(0, 5), transform.position.z + Random.Range(0, 5), 0));
+		}
 	}
 	
 	private void activating() {
@@ -100,15 +105,20 @@ public class BlockController : MonoBehaviour
 		fadePos += Time.deltaTime * deactivateSpeed;
 		if (fadePos > 1) {
 			state = State.sleep;
-			pool.GetComponent<PrefabPool>().removeBlock((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
+			pool.GetComponent<PrefabPool>().removeBlock((int)basePos.x, (int)basePos.y, (int)basePos.z);
 		}
 	}
 
-	public void toggleActive() {
+	public void toggleActive(Vector3 op, int bs, bool b) {
 		state = State.activating;
 		fadePos = 0;
 		basePos = transform.position;
 		targetPos = basePos;
+		if (bs > 0) {
+			originPos = op;
+			defaultScale = new Vector3(bs, bs, bs);
+			hasOffset = b;
+		}
 		confirmActive();
 	}
 	public void toggleDeactive() {
@@ -125,8 +135,8 @@ public class BlockController : MonoBehaviour
 	}
 
 	private void offset() {
-		float x = Mathf.PerlinNoise(timer * offsetSpeed + transform.position.z * offsetScale, transform.position.y * offsetScale);
-		targetPos = basePos + new Vector3((x - 0.5f) * 1f, 0, 0);
+		float x = Mathf.PerlinNoise(timer * offsetSpeed + basePos.x * offsetScale, basePos.y * offsetScale);
+		targetPos = basePos + new Vector3((x - 0.5f) * 2f, (x - 0.5f) * 1f, (x - 0.5f) * 2f);
 	}
 
 	private Vector3 fadeVector(Vector3 x, Vector3 y, float t) {

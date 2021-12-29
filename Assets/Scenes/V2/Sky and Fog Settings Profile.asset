@@ -203,6 +203,24 @@ MonoBehaviour:
   fogType:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &-1014705520618488324
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileOverride
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value:
+    - {fileID: 11400000, guid: 42a162de6c910ad44933ad03b385d164, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +238,7 @@ MonoBehaviour:
   - {fileID: -5305114667569252784}
   - {fileID: 222200672277803793}
   - {fileID: 5813598468274538428}
+  - {fileID: -1014705520618488324}
 --- !u!114 &222200672277803793
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -241,8 +260,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   colorMode:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 0
   color:
     m_OverrideState: 1
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -277,10 +296,10 @@ MonoBehaviour:
     m_Value: 0
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 128
+    m_Value: 100
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 50
     min: 1
   enableVolumetricFog:
     m_OverrideState: 1

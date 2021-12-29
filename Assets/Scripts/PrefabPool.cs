@@ -5,14 +5,19 @@ using UnityEngine;
 public class PrefabPool : MonoBehaviour
 {
 	public GameObject prefab;
-	public GameObject[] entities;
+	public int blockScale;
 	public int layer;
+	public bool offset;
+	public Vector3 adjustmentPos;
+	//public GameObject debugger;
+	private Vector3 originPos;
 
 	private Queue<int> queue;
 	private List<GameObject> list;
 
-	private const int spaceSize = 128;
+	private const int spaceSize = 256;
 	private int[,,] space = new int[spaceSize * 2, spaceSize * 2, spaceSize * 2];
+
 
 
 	// Start is called before the first frame update
@@ -43,8 +48,9 @@ public class PrefabPool : MonoBehaviour
 		float checkYHigher = transform.position.y + transform.localScale.y / 2;
 		float checkZLower = transform.position.z - transform.localScale.z / 2;
 		float checkZHigher = transform.position.z + transform.localScale.z / 2;
-		for (int x=(int)checkXLower;x<=checkXHigher;x++) {
-			for (int z=(int)checkZLower;z<=checkZHigher;z++) {
+		originPos = new Vector3(checkXLower, checkYLower, checkYLower) + adjustmentPos;
+		for (int x=(int)checkXLower;x<=checkXHigher;x+=blockScale) {
+			for (int z=(int)checkZLower;z<=checkZHigher;z+=blockScale) {
 				RaycastHit hitDownward;
 				RaycastHit hitUpward;
 				int upper = spaceSize * 10;
@@ -70,7 +76,7 @@ public class PrefabPool : MonoBehaviour
 				if (upper != spaceSize * 10 && lower != spaceSize * 10) {
 					upper = upper < (int)checkYHigher ? upper : (int)checkYHigher;
 					lower = lower > (int)checkYLower ? lower : (int)checkYLower;
-					for (int y=lower;y<=upper;y++) {
+					for (int y=lower;y<=upper;y+=blockScale) {
 						addBlock(x, y, z);
 					}
 				}
@@ -91,7 +97,7 @@ public class PrefabPool : MonoBehaviour
 		}
 		int pointer = getPrefab();
 		list[pointer].transform.position = new Vector3(x - spaceSize, y - spaceSize, z - spaceSize);
-		list[pointer].GetComponent<BlockController>().toggleActive();
+		list[pointer].GetComponent<BlockController>().toggleActive(originPos, blockScale, offset);
 		space[x, y, z] = pointer;
 	}
 
